@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+/* Dark mode follows the html[data-theme] toggle, or the OS setting when no theme is chosen. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+ * Design tokens. UI and charts read roles, never raw hex; light and dark are each their own
+ * selected steps (chart colours come from the validated reference palette).
+ */
+:root {
+  color-scheme: light;
+  --rg-page: #f3f3f0;
+  --rg-surface: #fcfcfb;
+  --rg-surface-2: #f0efec;
+  --rg-sunken: #ebeae6;
+  --rg-ink: #0b0b0b;
+  --rg-ink-2: #52514e;
+  --rg-muted: #6f6e69;
+  --rg-line: #e1e0d9;
+  --rg-line-strong: #c3c2b7;
+  --rg-accent: #256abf;
+  --rg-accent-hover: #1c5cab;
+  --rg-accent-soft: #e3eefc;
+  --rg-accent-ink: #1c5cab;
+  --rg-good-ink: #006300;
+  --rg-good-soft: #e3f4e3;
+  --rg-bad-ink: #b42f2f;
+  --rg-bad-soft: #fbe6e6;
+  --rg-warn-ink: #8a5a00;
+  --rg-warn-soft: #fdf1d6;
+
+  /* chart roles */
+  --chart-surface: #fcfcfb;
+  --chart-grid: #e1e0d9;
+  --chart-axis: #c3c2b7;
+  --chart-label: #898781;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --status-good: #0ca30c;
+  --status-critical: #d03b3b;
+  --meter-fill: #2a78d6;
+  --meter-track: #cde2fb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --rg-page: #0d0d0d;
+    --rg-surface: #1a1a19;
+    --rg-surface-2: #232322;
+    --rg-sunken: #121211;
+    --rg-ink: #ffffff;
+    --rg-ink-2: #c3c2b7;
+    --rg-muted: #9a9890;
+    --rg-line: #2c2c2a;
+    --rg-line-strong: #383835;
+    --rg-accent: #256abf;
+    --rg-accent-hover: #2a78d6;
+    --rg-accent-soft: #15253b;
+    --rg-accent-ink: #86b6ef;
+    --rg-good-ink: #4cc24c;
+    --rg-good-soft: #132a13;
+    --rg-bad-ink: #f08a8a;
+    --rg-bad-soft: #3a1717;
+    --rg-warn-ink: #f5c45c;
+    --rg-warn-soft: #33270c;
+    --chart-surface: #1a1a19;
+    --chart-grid: #2c2c2a;
+    --chart-axis: #383835;
+    --chart-label: #898781;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --meter-fill: #3987e5;
+    --meter-track: #0d366b;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --rg-page: #0d0d0d;
+  --rg-surface: #1a1a19;
+  --rg-surface-2: #232322;
+  --rg-sunken: #121211;
+  --rg-ink: #ffffff;
+  --rg-ink-2: #c3c2b7;
+  --rg-muted: #9a9890;
+  --rg-line: #2c2c2a;
+  --rg-line-strong: #383835;
+  --rg-accent: #256abf;
+  --rg-accent-hover: #2a78d6;
+  --rg-accent-soft: #15253b;
+  --rg-accent-ink: #86b6ef;
+  --rg-good-ink: #4cc24c;
+  --rg-good-soft: #132a13;
+  --rg-bad-ink: #f08a8a;
+  --rg-bad-soft: #3a1717;
+  --rg-warn-ink: #f5c45c;
+  --rg-warn-soft: #33270c;
+  --chart-surface: #1a1a19;
+  --chart-grid: #2c2c2a;
+  --chart-axis: #383835;
+  --chart-label: #898781;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --meter-fill: #3987e5;
+  --meter-track: #0d366b;
+}
+
+@theme inline {
+  --color-page: var(--rg-page);
+  --color-surface: var(--rg-surface);
+  --color-surface-2: var(--rg-surface-2);
+  --color-sunken: var(--rg-sunken);
+  --color-ink: var(--rg-ink);
+  --color-ink-2: var(--rg-ink-2);
+  --color-muted: var(--rg-muted);
+  --color-line: var(--rg-line);
+  --color-line-strong: var(--rg-line-strong);
+  --color-accent: var(--rg-accent);
+  --color-accent-hover: var(--rg-accent-hover);
+  --color-accent-soft: var(--rg-accent-soft);
+  --color-accent-ink: var(--rg-accent-ink);
+  --color-good-ink: var(--rg-good-ink);
+  --color-good-soft: var(--rg-good-soft);
+  --color-bad-ink: var(--rg-bad-ink);
+  --color-bad-soft: var(--rg-bad-soft);
+  --color-warn-ink: var(--rg-warn-ink);
+  --color-warn-soft: var(--rg-warn-soft);
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, "Liberation Mono", monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--rg-page);
+  color: var(--rg-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--rg-accent);
+  outline-offset: 2px;
+}
+
+/* Show code exactly as written: no programming-font ligatures (-> as an arrow, >= as ≥). */
+code,
+pre,
+.font-mono {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* Answer / summary prose rendered from Markdown */
+.prose-rg {
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.prose-rg > * + * {
+  margin-top: 0.6rem;
+}
+.prose-rg h1,
+.prose-rg h2,
+.prose-rg h3 {
+  font-weight: 600;
+  line-height: 1.3;
+}
+.prose-rg h1 { font-size: 1.15rem; }
+.prose-rg h2 { font-size: 1.05rem; }
+.prose-rg h3 { font-size: 1rem; }
+.prose-rg ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.prose-rg ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+}
+.prose-rg li + li {
+  margin-top: 0.2rem;
+}
+.prose-rg code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--rg-surface-2);
+  border: 1px solid var(--rg-line);
+  border-radius: 4px;
+  padding: 0.05rem 0.3rem;
+}
+.prose-rg pre {
+  background: var(--rg-sunken);
+  border: 1px solid var(--rg-line);
+  border-radius: 8px;
+  padding: 0.75rem;
+  overflow-x: auto;
+  font-size: 0.82rem;
+}
+.prose-rg pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+.prose-rg a {
+  color: var(--rg-accent-ink);
+  text-decoration: underline;
+}
+.prose-rg table {
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+.prose-rg th,
+.prose-rg td {
+  border: 1px solid var(--rg-line);
+  padding: 0.25rem 0.5rem;
+}
+
+/* Mermaid diagram: fit the card width */
+.mermaid-host svg {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "full-stack-fastapi-template",
+  "description": "Audit check on a real repository: github.com/fastapi/full-stack-fastapi-template at commit f27b4721507824e57ebd0286ff1a84d82e83bf59 (FastAPI + SQLModel backend, React + TanStack frontend). Expected files and symbols were read from that commit by hand. The unanswerable questions name technologies the repository does not use. Run with: evaluate.py --project-id <id of the cloned project> --eval-set eval/eval_set_fullstack_template.json",
+  "repo": "https://github.com/fastapi/full-stack-fastapi-template",
+  "questions": [
+    {"id": "r01", "question": "How are user passwords hashed, and which hashing algorithms are supported?", "expected_file": "backend/app/core/security.py", "expected_symbol": "get_password_hash"},
+    {"id": "r02", "question": "How is a JWT access token created and when does it expire?", "expected_file": "backend/app/core/security.py", "expected_symbol": "create_access_token"},
+    {"id": "r03", "question": "How does the backend decode the bearer token and load the current user for a request?", "expected_file": "backend/app/api/deps.py", "expected_symbol": "get_current_user"},
+    {"id": "r04", "question": "What stops a normal user from calling admin-only endpoints?", "expected_file": "backend/app/api/deps.py", "expected_symbol": "get_current_active_superuser"},
+    {"id": "r05", "question": "How does login avoid leaking, through response time, whether an email address exists?", "expected_file": "backend/app/crud.py", "expected_symbol": "authenticate"},
+    {"id": "r06", "question": "How is a new user saved to the database with a hashed password?", "expected_file": "backend/app/crud.py", "expected_symbol": "create_user"},
+    {"id": "r07", "question": "Which endpoint issues an OAuth2 access token after checking the email and password?", "expected_file": "backend/app/api/routes/login.py", "expected_symbol": "login_access_token"},
+    {"id": "r08", "question": "How does password recovery avoid revealing whether an email is registered?", "expected_file": "backend/app/api/routes/login.py", "expected_symbol": "recover_password"},
+    {"id": "r09", "question": "How is a password reset token checked before the new password is saved?", "expected_file": "backend/app/api/routes/login.py", "expected_symbol": "reset_password"},
+    {"id": "r10", "question": "How is the password reset token generated and how long is it valid?", "expected_file": "backend/app/utils.py", "expected_symbol": "generate_password_reset_token"},
+    {"id": "r11", "question": "How are emails sent and which SMTP options are used?", "expected_file": "backend/app/utils.py", "expected_symbol": "send_email"},
+    {"id": "r12", "question": "How can someone sign up without being logged in, and what happens if the email is already taken?", "expected_file": "backend/app/api/routes/users.py", "expected_symbol": "register_user"},
+    {"id": "r13", "question": "Can a superuser delete their own account?", "expected_file": "backend/app/api/routes/users.py", "expected_symbol": "delete_user_me"},
+    {"id": "r14", "question": "What checks are made when users change their own password?", "expected_file": "backend/app/api/routes/users.py", "expected_symbol": "update_password_me"},
+    {"id": "r15", "question": "Which items does a user who is not an admin see when listing items?", "expected_file": "backend/app/api/routes/items.py", "expected_symbol": "read_items"},
+    {"id": "r16", "question": "How is the first superuser account created when the database is initialised?", "expected_file": "backend/app/core/db.py", "expected_symbol": "init_db"},
+    {"id": "r17", "question": "What happens if a secret is left set to 'changethis' in the configuration?", "expected_file": "backend/app/core/config.py", "expected_symbol": "_check_default_secret"},
+    {"id": "r18", "question": "How long are access tokens valid by default, and where is that configured?", "expected_file": "backend/app/core/config.py", "expected_symbol": "Settings"},
+    {"id": "r19", "question": "Where does the frontend store the access token after login, and what does logout do?", "expected_file": "frontend/src/hooks/useAuth.ts", "expected_symbol": "useAuth"},
+    {"id": "r20", "question": "How does the frontend decide whether the user is logged in?", "expected_file": "frontend/src/hooks/useAuth.ts", "expected_symbol": "isLoggedIn"},
+    {"id": "r21", "question": "Where is Sentry error tracking set up, and when is it turned on?", "expected_file": "backend/app/main.py", "expected_symbol": null}
+  ],
+  "unanswerable": [
+    {"id": "u01", "question": "How does the app charge customers through Stripe?"},
+    {"id": "u02", "question": "Which Kafka topics does the backend publish events to?"},
+    {"id": "u03", "question": "How are WebSocket connections authenticated for real-time chat?"}
+  ]
+}

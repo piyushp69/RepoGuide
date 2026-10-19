@@ -1,0 +1,2505 @@
+{
+  "run_id": "20261007-231656-shoplite-sample",
+  "created_at": "2026-10-07T23:16:56+00:00",
+  "eval_set": {
+    "name": "shoplite-sample",
+    "description": "Questions about the ShopLite sample repository (eval/sample_repo). Each question names the file and symbol that answers it. Unanswerable questions check that the model says it cannot find the answer instead of guessing.",
+    "path": "D:\\CodeParser\\eval\\eval_set.json",
+    "questions": 30,
+    "unanswerable": 3
+  },
+  "project": {
+    "id": 1,
+    "name": "ShopLite (sample repo)",
+    "root_path": "D:\\CodeParser\\eval\\sample_repo"
+  },
+  "config": {
+    "chat_model": "qwen2.5-coder:7b",
+    "embed_model": "nomic-embed-text",
+    "top_k": 5,
+    "mrr_cutoff": 10,
+    "with_llm": true,
+    "retrieval_top_k": 8
+  },
+  "metrics": {
+    "questions": 30,
+    "hit_at_5": 0.9333,
+    "mrr": 0.7559,
+    "file_hit_at_5": 1.0,
+    "file_mrr": 0.8889,
+    "in_context_rate": 1.0,
+    "citation_validity": 1.0,
+    "citations_checked": 64,
+    "answers_with_citations": 1.0,
+    "answers_citing_expected_file": 0.9667,
+    "answers_citing_expected_symbol": 0.9,
+    "answers_rewritten": 0.0333,
+    "answers_with_corrected_citations": 0.0333,
+    "avg_answer_seconds": 1.9217,
+    "abstention_rate": 1.0,
+    "unanswerable_questions": 3
+  },
+  "ablation": {
+    "vector": {
+      "hit_at_5": 0.9333,
+      "mrr": 0.8
+    },
+    "bm25": {
+      "hit_at_5": 0.7667,
+      "mrr": 0.689
+    },
+    "hybrid": {
+      "hit_at_5": 0.9333,
+      "mrr": 0.7559
+    }
+  },
+  "questions": [
+    {
+      "id": "q01",
+      "question": "How is the final order total calculated?",
+      "expected_file": "backend/services/pricing.py",
+      "expected_symbol": "compute_order_total",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "compute_order_total",
+          "lines": "38-43"
+        },
+        {
+          "file_path": "backend/models.py",
+          "symbol": "Order",
+          "lines": "36-52"
+        },
+        {
+          "file_path": "backend/models.py",
+          "symbol": "OrderItem",
+          "lines": "25-33"
+        },
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "pricing.py",
+          "lines": "1-11"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.get_order",
+          "lines": "50-62"
+        }
+      ],
+      "seconds": 3.04,
+      "answer": "The final order total is calculated in the `compute_order_total` function in `backend/services/pricing.py` [1]. This function takes a list of `OrderItem` objects, an optional `discount_code`, and a `tax_rate`. It calculates the subtotal by summing the `line_total_cents` of all items. It then applies any discount using the `apply_discount` function [10] and calculates the tax on the discounted amount using the `calculate_tax` function [9]. Finally, it adds the tax and shipping cost (which is determined by the subtotal) to the discounted amount to get the final total in integer cents.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/services/pricing.py",
+          "start_line": 38,
+          "end_line": 43,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 10,
+          "file_path": "backend/services/pricing.py",
+          "start_line": 18,
+          "end_line": 25,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 9,
+          "file_path": "backend/services/pricing.py",
+          "start_line": 28,
+          "end_line": 30,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/services/pricing.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q02",
+      "question": "What discount codes exist and how is a discount applied to an amount?",
+      "expected_file": "backend/services/pricing.py",
+      "expected_symbol": "apply_discount",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "apply_discount",
+          "lines": "18-25"
+        },
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "pricing.py",
+          "lines": "1-11"
+        },
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "compute_order_total",
+          "lines": "38-43"
+        },
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "InvalidDiscountCode",
+          "lines": "14-15"
+        },
+        {
+          "file_path": "README.md",
+          "symbol": "Features",
+          "lines": "6-12"
+        }
+      ],
+      "seconds": 1.89,
+      "answer": "The discount codes that exist are listed in the `DISCOUNT_CODES` dictionary in the `pricing.py` module [2]. The discount is applied to an amount by the `apply_discount` function, which takes an amount in cents and a discount code as input. If the code is valid, it reduces the amount by the percentage associated with the code. If the code is invalid, it raises an `InvalidDiscountCode` exception [4].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 2,
+          "file_path": "backend/services/pricing.py",
+          "start_line": 1,
+          "end_line": 11,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 4,
+          "file_path": "backend/services/pricing.py",
+          "start_line": 14,
+          "end_line": 15,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/services/pricing.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": false,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q03",
+      "question": "How is sales tax rounded?",
+      "expected_file": "backend/services/pricing.py",
+      "expected_symbol": "calculate_tax",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "calculate_tax",
+          "lines": "28-30"
+        },
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "compute_order_total",
+          "lines": "38-43"
+        },
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "pricing.py",
+          "lines": "1-11"
+        },
+        {
+          "file_path": "frontend/src/cart.ts",
+          "symbol": "Cart",
+          "lines": "10-43"
+        },
+        {
+          "file_path": "README.md",
+          "symbol": "Features",
+          "lines": "6-12"
+        }
+      ],
+      "seconds": 1.16,
+      "answer": "Sales tax is rounded half-up to the nearest cent. This is done in the `calculate_tax` function [1], where the tax is calculated by multiplying the amount by the tax rate and then adding 0.5 before converting to an integer.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/services/pricing.py",
+          "start_line": 28,
+          "end_line": 30,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q04",
+      "question": "When do customers get free shipping?",
+      "expected_file": "backend/services/pricing.py",
+      "expected_symbol": "shipping_cost",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "shipping_cost",
+          "lines": "33-35"
+        },
+        {
+          "file_path": "backend/services/notifications.py",
+          "symbol": "send_shipping_notice",
+          "lines": "35-38"
+        },
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "pricing.py",
+          "lines": "1-11"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_shipped",
+          "lines": "89-98"
+        },
+        {
+          "file_path": "backend/models.py",
+          "symbol": "Order",
+          "lines": "36-52"
+        }
+      ],
+      "seconds": 0.8,
+      "answer": "Customers get free shipping when their order subtotal is at or above the free-shipping threshold. This threshold is set to 5000 cents [3].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 3,
+          "file_path": "backend/services/pricing.py",
+          "start_line": 1,
+          "end_line": 11,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": false,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q05",
+      "question": "How are user passwords hashed before they are stored?",
+      "expected_file": "backend/auth.py",
+      "expected_symbol": "hash_password",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 2
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/auth.py",
+          "symbol": "hash_password",
+          "lines": "14-18"
+        },
+        {
+          "file_path": "backend/auth.py",
+          "symbol": "verify_password",
+          "lines": "21-24"
+        },
+        {
+          "file_path": "backend/auth.py",
+          "symbol": "auth.py",
+          "lines": "1-11"
+        },
+        {
+          "file_path": "backend/auth.py",
+          "symbol": "create_token",
+          "lines": "27-29"
+        },
+        {
+          "file_path": "backend/auth.py",
+          "symbol": "verify_token",
+          "lines": "32-39"
+        }
+      ],
+      "seconds": 1.25,
+      "answer": "User passwords are hashed using the `hash_password` function in `backend/auth.py` [1]. This function takes a password and an optional salt, hashes the password with PBKDF2-SHA256, and returns a string that includes both the salt and the digest.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/auth.py",
+          "start_line": 14,
+          "end_line": 18,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/auth.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q06",
+      "question": "How does the API check that a token is valid and not expired?",
+      "expected_file": "backend/auth.py",
+      "expected_symbol": "verify_token",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/auth.py",
+          "symbol": "verify_token",
+          "lines": "32-39"
+        },
+        {
+          "file_path": "backend/auth.py",
+          "symbol": "auth.py",
+          "lines": "1-11"
+        },
+        {
+          "file_path": "backend/auth.py",
+          "symbol": "require_auth",
+          "lines": "42-55"
+        },
+        {
+          "file_path": "backend/auth.py",
+          "symbol": "create_token",
+          "lines": "27-29"
+        },
+        {
+          "file_path": "backend/routes.py",
+          "symbol": "register_staff_routes",
+          "lines": "55-67"
+        }
+      ],
+      "seconds": 1.9,
+      "answer": "The API checks that a token is valid and not expired by using the `verify_token` function [1]. This function uses `URLSafeTimedSerializer` from the `itsdangerous` library to load the token. If the token is tampered with or expired, it raises a `BadSignature` or `SignatureExpired` exception, respectively. If the token is valid, it extracts the `user_id` from the token data and returns it.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/auth.py",
+          "start_line": 32,
+          "end_line": 39,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q07",
+      "question": "What protects staff-only endpoints from unauthenticated requests?",
+      "expected_file": "backend/auth.py",
+      "expected_symbol": "require_auth",
+      "symbol_found_in_index": true,
+      "rank": 3,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 8
+        },
+        "hybrid": {
+          "rank": 3
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/auth.py",
+          "symbol": "auth.py",
+          "lines": "1-11"
+        },
+        {
+          "file_path": "backend/routes.py",
+          "symbol": "register_staff_routes",
+          "lines": "55-67"
+        },
+        {
+          "file_path": "backend/auth.py",
+          "symbol": "require_auth",
+          "lines": "42-55"
+        },
+        {
+          "file_path": "backend/services/inventory.py",
+          "symbol": "OutOfStockError",
+          "lines": "8-11"
+        },
+        {
+          "file_path": "backend/routes.py",
+          "symbol": "routes.py",
+          "lines": "1-10"
+        }
+      ],
+      "seconds": 1.24,
+      "answer": "The staff-only endpoints are protected from unauthenticated requests by the `require_auth` decorator [3]. This decorator checks for a valid `Authorization: Bearer` token in the request headers. If the token is missing or invalid, it returns a 401 Unauthorized response.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 3,
+          "file_path": "backend/auth.py",
+          "start_line": 42,
+          "end_line": 55,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q08",
+      "question": "Where are the database tables created?",
+      "expected_file": "backend/db.py",
+      "expected_symbol": "init_db",
+      "symbol_found_in_index": true,
+      "rank": 2,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 2
+        },
+        "bm25": {
+          "rank": 2
+        },
+        "hybrid": {
+          "rank": 2
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/db.py",
+          "symbol": "db.py",
+          "lines": "1-33"
+        },
+        {
+          "file_path": "backend/db.py",
+          "symbol": "init_db",
+          "lines": "44-47"
+        },
+        {
+          "file_path": "backend/app.py",
+          "symbol": "create_app",
+          "lines": "12-23"
+        },
+        {
+          "file_path": "backend/auth.py",
+          "symbol": "create_token",
+          "lines": "27-29"
+        },
+        {
+          "file_path": "backend/config.py",
+          "symbol": "Config",
+          "lines": "6-14"
+        }
+      ],
+      "seconds": 1.12,
+      "answer": "The database tables are created in the `init_db` function in `backend/db.py` [2]. This function uses the `SCHEMA` string, which contains the SQL commands to create the tables, and executes them using a connection to the database.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 2,
+          "file_path": "backend/db.py",
+          "start_line": 44,
+          "end_line": 47,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/db.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q09",
+      "question": "How are database transactions committed or rolled back?",
+      "expected_file": "backend/db.py",
+      "expected_symbol": "transaction",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/db.py",
+          "symbol": "transaction",
+          "lines": "50-58"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_paid",
+          "lines": "64-75"
+        },
+        {
+          "file_path": "backend/config.py",
+          "symbol": "Config",
+          "lines": "6-14"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "orders.py",
+          "lines": "1-9"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_shipped",
+          "lines": "89-98"
+        }
+      ],
+      "seconds": 1.71,
+      "answer": "Database transactions are committed or rolled back in the `transaction` function in `backend/db.py` [1]. This function uses a context manager to handle transactions. If the block of code within the `with` statement succeeds, the transaction is committed with `conn.commit()`. If an exception occurs, the transaction is rolled back with `conn.rollback()`, and the exception is re-raised.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/db.py",
+          "start_line": 50,
+          "end_line": 58,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/db.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q10",
+      "question": "What happens when an order asks for more units than are in stock?",
+      "expected_file": "backend/services/inventory.py",
+      "expected_symbol": "reserve_stock",
+      "symbol_found_in_index": true,
+      "rank": 2,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 9
+        },
+        "hybrid": {
+          "rank": 2
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/inventory.py",
+          "symbol": "release_stock",
+          "lines": "27-29"
+        },
+        {
+          "file_path": "backend/services/inventory.py",
+          "symbol": "reserve_stock",
+          "lines": "19-24"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.cancel_order",
+          "lines": "77-87"
+        },
+        {
+          "file_path": "backend/models.py",
+          "symbol": "OrderItem",
+          "lines": "25-33"
+        },
+        {
+          "file_path": "backend/services/inventory.py",
+          "symbol": "check_low_stock",
+          "lines": "32-37"
+        }
+      ],
+      "seconds": 2.15,
+      "answer": "When an order asks for more units than are in stock, the `reserve_stock` function [2] is called. This function checks the available stock for the product using the `get_stock` function [7]. If the available stock is less than the requested quantity, an `OutOfStockError` [9] is raised. This error is then caught in the `create_order` method [10] of the `OrderService` class, and an error response is returned to the client.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 2,
+          "file_path": "backend/services/inventory.py",
+          "start_line": 19,
+          "end_line": 24,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 7,
+          "file_path": "backend/services/inventory.py",
+          "start_line": 14,
+          "end_line": 16,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 9,
+          "file_path": "backend/services/inventory.py",
+          "start_line": 8,
+          "end_line": 11,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 10,
+          "file_path": "backend/services/orders.py",
+          "start_line": 27,
+          "end_line": 48,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q11",
+      "question": "How does the system warn about products that are running low?",
+      "expected_file": "backend/services/inventory.py",
+      "expected_symbol": "check_low_stock",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/inventory.py",
+          "symbol": "check_low_stock",
+          "lines": "32-37"
+        },
+        {
+          "file_path": "README.md",
+          "symbol": "Running locally",
+          "lines": "23-32"
+        },
+        {
+          "file_path": "backend/services/inventory.py",
+          "symbol": "reserve_stock",
+          "lines": "19-24"
+        },
+        {
+          "file_path": "backend/config.py",
+          "symbol": "Config",
+          "lines": "6-14"
+        },
+        {
+          "file_path": "backend/services/inventory.py",
+          "symbol": "release_stock",
+          "lines": "27-29"
+        }
+      ],
+      "seconds": 1.57,
+      "answer": "The system logs a warning for every product whose stock falls below a specified threshold. This is done in the `check_low_stock` function [1]. The function queries the database for products with stock below the threshold and logs a warning for each one.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/services/inventory.py",
+          "start_line": 32,
+          "end_line": 37,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q12",
+      "question": "What does cancelling an order do to inventory?",
+      "expected_file": "backend/services/orders.py",
+      "expected_symbol": "OrderService.cancel_order",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.cancel_order",
+          "lines": "77-87"
+        },
+        {
+          "file_path": "backend/routes.py",
+          "symbol": "cancel_order_route",
+          "lines": "44-52"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "cancelOrder",
+          "lines": "53-55"
+        },
+        {
+          "file_path": "backend/models.py",
+          "symbol": "Order",
+          "lines": "36-52"
+        },
+        {
+          "file_path": "backend/services/inventory.py",
+          "symbol": "release_stock",
+          "lines": "27-29"
+        }
+      ],
+      "seconds": 0.5,
+      "answer": "Cancelling an order releases the reserved stock back to the inventory [5].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 5,
+          "file_path": "backend/services/inventory.py",
+          "start_line": 27,
+          "end_line": 29,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": false,
+      "cites_expected_symbol": false,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q13",
+      "question": "Walk me through the steps of placing a new order on the server.",
+      "expected_file": "backend/services/orders.py",
+      "expected_symbol": "OrderService.create_order",
+      "symbol_found_in_index": true,
+      "rank": 7,
+      "file_rank": 1,
+      "hit_at_5": false,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.14285714285714285,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 6
+        },
+        "bm25": {
+          "rank": null
+        },
+        "hybrid": {
+          "rank": 7
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_shipped",
+          "lines": "89-98"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "orders.py",
+          "lines": "1-9"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_paid",
+          "lines": "64-75"
+        },
+        {
+          "file_path": "backend/services/notifications.py",
+          "symbol": "send_order_confirmation",
+          "lines": "24-32"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService",
+          "lines": "20-21"
+        }
+      ],
+      "seconds": 7.83,
+      "answer": "1. The order is placed through the `placeOrder` function in the frontend, which sends a POST request to the `/orders` endpoint with the customer's email, cart items, and an optional discount code [8].\n\n2. The `placeOrder` function in the frontend calls the `request` function to send the order data to the server [11].\n\n3. The `request` function sends a JSON request to the server and handles the response. If the response is not successful, it throws an `ApiError` [11].\n\n4. The `OrderForm` component in the frontend handles the form submission. When the form is submitted, it calls the `handleSubmit` function [12].\n\n5. The `handleSubmit` function checks if the cart is empty. If it is, it sets a message and returns. If not, it calls the `placeOrder` function to place the order [12].\n\n6. The `placeOrder` function sends a POST request to the `/orders` endpoint with the order data. The server processes this request and creates a new order [8][1].\n\n7. The `OrderService` class in the backend handles the creation of new orders. It validates the order data, computes the total, reserves stock, and inserts the order into the database [6][7].\n\n8. The `OrderService` class also handles marking orders as paid and shipped. However, these steps are not triggered by the `placeOrder` function in the frontend [8][8][8].\n\n9. After the order is created, the `OrderService` sends an order confirmation email to the customer [5].\n\n10. The `OrderService` also checks for low stock and releases any reserved stock if necessary [5][5].\n\n11. The `OrderService` returns the newly created order to the frontend, which then displays a message to the user [5].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 8,
+          "file_path": "frontend/src/api.ts",
+          "start_line": 45,
+          "end_line": 51,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 11,
+          "file_path": "frontend/src/api.ts",
+          "start_line": 28,
+          "end_line": 39,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 12,
+          "file_path": "frontend/src/components/OrderForm.tsx",
+          "start_line": 9,
+          "end_line": 64,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/services/orders.py",
+          "start_line": 89,
+          "end_line": 98,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 6,
+          "file_path": "backend/services/orders.py",
+          "start_line": 12,
+          "end_line": 13,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 7,
+          "file_path": "backend/services/orders.py",
+          "start_line": 27,
+          "end_line": 48,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 5,
+          "file_path": "backend/services/orders.py",
+          "start_line": 20,
+          "end_line": 21,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 7
+    },
+    {
+      "id": "q14",
+      "question": "Which order states allow an order to be cancelled?",
+      "expected_file": "backend/models.py",
+      "expected_symbol": "Order.can_cancel",
+      "symbol_found_in_index": true,
+      "rank": 4,
+      "file_rank": 4,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.25,
+      "file_reciprocal_rank": 0.25,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 3
+        },
+        "bm25": {
+          "rank": 6
+        },
+        "hybrid": {
+          "rank": 4
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.cancel_order",
+          "lines": "77-87"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "cancelOrder",
+          "lines": "53-55"
+        },
+        {
+          "file_path": "backend/routes.py",
+          "symbol": "cancel_order_route",
+          "lines": "44-52"
+        },
+        {
+          "file_path": "backend/models.py",
+          "symbol": "Order",
+          "lines": "36-52"
+        },
+        {
+          "file_path": "backend/models.py",
+          "symbol": "OrderStatus",
+          "lines": "7-11"
+        }
+      ],
+      "seconds": 0.68,
+      "answer": "The order states that allow an order to be cancelled are:\n\n- PENDING [4]\n- PAID [4]",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 4,
+          "file_path": "backend/models.py",
+          "start_line": 36,
+          "end_line": 52,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q15",
+      "question": "How is an order marked as shipped?",
+      "expected_file": "backend/services/orders.py",
+      "expected_symbol": "OrderService.mark_shipped",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_shipped",
+          "lines": "89-98"
+        },
+        {
+          "file_path": "backend/services/notifications.py",
+          "symbol": "send_shipping_notice",
+          "lines": "35-38"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_paid",
+          "lines": "64-75"
+        },
+        {
+          "file_path": "backend/models.py",
+          "symbol": "OrderStatus",
+          "lines": "7-11"
+        },
+        {
+          "file_path": "README.md",
+          "symbol": "Features",
+          "lines": "6-12"
+        }
+      ],
+      "seconds": 2.95,
+      "answer": "An order is marked as shipped by calling the `mark_shipped` method on the `OrderService` class [1]. This method performs several steps:\n1. It retrieves the order using the `get_order` method [10].\n2. It checks if the order's status is `PAID`. If not, it raises an `InvalidOrderState` exception [1][9].\n3. It updates the order's status to `SHIPPED` in the database using a transaction [1][12].\n4. It sends a shipping notice to the customer's email using the `send_shipping_notice` function [1][2].\n5. Finally, it returns the updated order object [1].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/services/orders.py",
+          "start_line": 89,
+          "end_line": 98,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 10,
+          "file_path": "backend/services/orders.py",
+          "start_line": 50,
+          "end_line": 62,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 9,
+          "file_path": "backend/services/orders.py",
+          "start_line": 16,
+          "end_line": 17,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 12,
+          "file_path": "backend/db.py",
+          "start_line": 50,
+          "end_line": 58,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 2,
+          "file_path": "backend/services/notifications.py",
+          "start_line": 35,
+          "end_line": 38,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q16",
+      "question": "How is a payment reference recorded on an order?",
+      "expected_file": "backend/services/orders.py",
+      "expected_symbol": "OrderService.mark_paid",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_paid",
+          "lines": "64-75"
+        },
+        {
+          "file_path": "backend/models.py",
+          "symbol": "Order",
+          "lines": "36-52"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.get_order",
+          "lines": "50-62"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_shipped",
+          "lines": "89-98"
+        },
+        {
+          "file_path": "backend/services/notifications.py",
+          "symbol": "send_order_confirmation",
+          "lines": "24-32"
+        }
+      ],
+      "seconds": 1.56,
+      "answer": "The payment reference is recorded on an order by updating the `orders` table in the database with the new payment reference. This is done in the `OrderService.mark_paid` method [1], where the payment reference is passed as a parameter and used in an SQL `UPDATE` statement to set the `payment_reference` field of the order.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/services/orders.py",
+          "start_line": 64,
+          "end_line": 75,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q17",
+      "question": "What does the order confirmation e-mail contain?",
+      "expected_file": "backend/services/notifications.py",
+      "expected_symbol": "send_order_confirmation",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/notifications.py",
+          "symbol": "send_order_confirmation",
+          "lines": "24-32"
+        },
+        {
+          "file_path": "README.md",
+          "symbol": "Features",
+          "lines": "6-12"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.create_order",
+          "lines": "27-48"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "placeOrder",
+          "lines": "45-51"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_shipped",
+          "lines": "89-98"
+        }
+      ],
+      "seconds": 0.74,
+      "answer": "The order confirmation e-mail contains a summary of the order, including the items ordered, their quantities, and the total amount [1].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/services/notifications.py",
+          "start_line": 24,
+          "end_line": 32,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q18",
+      "question": "What happens if the mail server is unreachable when an e-mail is sent?",
+      "expected_file": "backend/services/notifications.py",
+      "expected_symbol": "_send_email",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/notifications.py",
+          "symbol": "_send_email",
+          "lines": "11-21"
+        },
+        {
+          "file_path": "backend/services/notifications.py",
+          "symbol": "send_order_confirmation",
+          "lines": "24-32"
+        },
+        {
+          "file_path": "README.md",
+          "symbol": "Features",
+          "lines": "6-12"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_shipped",
+          "lines": "89-98"
+        },
+        {
+          "file_path": "backend/services/notifications.py",
+          "symbol": "notifications.py",
+          "lines": "1-8"
+        }
+      ],
+      "seconds": 1.25,
+      "answer": "If the mail server is unreachable when an e-mail is sent, the function `_send_email` will catch the `OSError` exception and log an error message [1]. The function will then return `False` to indicate that the e-mail could not be sent.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/services/notifications.py",
+          "start_line": 11,
+          "end_line": 21,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q19",
+      "question": "Which environment variables configure the application?",
+      "expected_file": "backend/config.py",
+      "expected_symbol": "load_config",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 3
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/config.py",
+          "symbol": "load_config",
+          "lines": "17-27"
+        },
+        {
+          "file_path": "backend/config.py",
+          "symbol": "config.py",
+          "lines": "1-3"
+        },
+        {
+          "file_path": "README.md",
+          "symbol": "Running locally",
+          "lines": "23-32"
+        },
+        {
+          "file_path": "backend/app.py",
+          "symbol": "app.py",
+          "lines": "1-9"
+        },
+        {
+          "file_path": "README.md",
+          "symbol": "Project layout",
+          "lines": "14-21"
+        }
+      ],
+      "seconds": 1.98,
+      "answer": "The application configuration is read from the following environment variables:\n\n- `SHOPLITE_DB` [1]\n- `SHOPLITE_SECRET` [1]\n- `SHOPLITE_TAX_RATE` [1]\n- `SHOPLITE_LOW_STOCK` [1]\n- `SHOPLITE_SMTP_HOST` [1]\n- `SHOPLITE_SENDER` [1]\n- `SHOPLITE_DEBUG` [1]",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/config.py",
+          "start_line": 17,
+          "end_line": 27,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q20",
+      "question": "How is the web application assembled at startup?",
+      "expected_file": "backend/app.py",
+      "expected_symbol": "create_app",
+      "symbol_found_in_index": true,
+      "rank": 4,
+      "file_rank": 2,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.25,
+      "file_reciprocal_rank": 0.5,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 2
+        },
+        "bm25": {
+          "rank": null
+        },
+        "hybrid": {
+          "rank": 4
+        }
+      },
+      "top5": [
+        {
+          "file_path": "README.md",
+          "symbol": "Project layout",
+          "lines": "14-21"
+        },
+        {
+          "file_path": "backend/app.py",
+          "symbol": "app.py",
+          "lines": "1-9"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "request",
+          "lines": "28-39"
+        },
+        {
+          "file_path": "backend/app.py",
+          "symbol": "create_app",
+          "lines": "12-23"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "placeOrder",
+          "lines": "45-51"
+        }
+      ],
+      "seconds": 1.86,
+      "answer": "The web application is assembled at startup by the `create_app` function in `backend/app.py` [4]. This function initializes the Flask app, loads the configuration, sets up the database, registers the routes, and configures logging. The `if __name__ == \"__main__\":` block at the end of `app.py` [13] calls `create_app()` and runs the app with development settings.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 4,
+          "file_path": "backend/app.py",
+          "start_line": 12,
+          "end_line": 23,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 13,
+          "file_path": "backend/app.py",
+          "start_line": 26,
+          "end_line": 27,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/app.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/app.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q21",
+      "question": "Which endpoint places an order and how does it validate the request body?",
+      "expected_file": "backend/routes.py",
+      "expected_symbol": "create_order_route",
+      "symbol_found_in_index": true,
+      "rank": 6,
+      "file_rank": 3,
+      "hit_at_5": false,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.16666666666666666,
+      "file_reciprocal_rank": 0.3333333333333333,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 10
+        },
+        "bm25": {
+          "rank": 10
+        },
+        "hybrid": {
+          "rank": 6
+        }
+      },
+      "top5": [
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "placeOrder",
+          "lines": "45-51"
+        },
+        {
+          "file_path": "backend/services/notifications.py",
+          "symbol": "send_order_confirmation",
+          "lines": "24-32"
+        },
+        {
+          "file_path": "backend/routes.py",
+          "symbol": "routes.py",
+          "lines": "1-10"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_paid",
+          "lines": "64-75"
+        },
+        {
+          "file_path": "backend/routes.py",
+          "symbol": "register_staff_routes",
+          "lines": "55-67"
+        }
+      ],
+      "seconds": 1.1,
+      "answer": "The endpoint that places an order is `/api/orders` [6]. It validates the request body by checking if it contains the required `email` field and if the `items` array is not empty [6][9].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 6,
+          "file_path": "backend/routes.py",
+          "start_line": 24,
+          "end_line": 41,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 9,
+          "file_path": "frontend/src/api.ts",
+          "start_line": 28,
+          "end_line": 39,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q22",
+      "question": "How does the API list products?",
+      "expected_file": "backend/routes.py",
+      "expected_symbol": "list_products",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/routes.py",
+          "symbol": "list_products",
+          "lines": "17-21"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "Product",
+          "lines": "2-7"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "fetchProducts",
+          "lines": "41-43"
+        },
+        {
+          "file_path": "frontend/src/components/OrderForm.tsx",
+          "symbol": "OrderForm",
+          "lines": "9-64"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "OrderLine",
+          "lines": "9-12"
+        }
+      ],
+      "seconds": 4.89,
+      "answer": "The API lists products by executing a SQL query to fetch product details from the database and then returning the results as a JSON response. The relevant code is:\n\n```python\nrows = _service().conn.execute(\"SELECT id, name, price_cents, stock FROM products ORDER BY name\").fetchall()\nreturn jsonify([dict(row) for row in rows])\n```\n\nThis code is found in the `list_products` function in `backend/routes.py` [1].",
+      "not_found": false,
+      "rewritten": true,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/routes.py",
+          "start_line": 17,
+          "end_line": 21,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/routes.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q23",
+      "question": "How does the frontend send an order to the backend?",
+      "expected_file": "frontend/src/api.ts",
+      "expected_symbol": "placeOrder",
+      "symbol_found_in_index": true,
+      "rank": 5,
+      "file_rank": 4,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.2,
+      "file_reciprocal_rank": 0.25,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 2
+        },
+        "bm25": {
+          "rank": null
+        },
+        "hybrid": {
+          "rank": 5
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/notifications.py",
+          "symbol": "send_order_confirmation",
+          "lines": "24-32"
+        },
+        {
+          "file_path": "backend/services/notifications.py",
+          "symbol": "send_shipping_notice",
+          "lines": "35-38"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_shipped",
+          "lines": "89-98"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "cancelOrder",
+          "lines": "53-55"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "placeOrder",
+          "lines": "45-51"
+        }
+      ],
+      "seconds": 1.59,
+      "answer": "The frontend sends an order to the backend using the `placeOrder` function [5]. This function makes a POST request to the `/orders` endpoint with the customer's email, items in the cart, and an optional discount code. The request is handled by the backend in the `create_order` method [10] of the `OrderService` class.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 5,
+          "file_path": "frontend/src/api.ts",
+          "start_line": 45,
+          "end_line": 51,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 10,
+          "file_path": "backend/services/orders.py",
+          "start_line": 27,
+          "end_line": 48,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q24",
+      "question": "How are API error responses turned into errors in the frontend code?",
+      "expected_file": "frontend/src/api.ts",
+      "expected_symbol": "request",
+      "symbol_found_in_index": true,
+      "rank": 2,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 2
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 2
+        }
+      },
+      "top5": [
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "ApiError",
+          "lines": "20-24"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "request",
+          "lines": "28-39"
+        },
+        {
+          "file_path": "frontend/src/components/OrderForm.tsx",
+          "symbol": "OrderForm.tsx",
+          "lines": "1-3"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "api.ts",
+          "lines": "26-26"
+        },
+        {
+          "file_path": "frontend/src/components/OrderForm.tsx",
+          "symbol": "OrderForm",
+          "lines": "9-64"
+        }
+      ],
+      "seconds": 1.34,
+      "answer": "API error responses are turned into errors in the frontend code by the `request` function [2]. This function checks if the response is not OK (`!response.ok`). If it's not, it throws a new `ApiError` [1] with the status and error message from the server.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 2,
+          "file_path": "frontend/src/api.ts",
+          "start_line": 28,
+          "end_line": 39,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "frontend/src/api.ts",
+          "start_line": 20,
+          "end_line": 24,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q25",
+      "question": "How does the shopping cart compute its subtotal?",
+      "expected_file": "frontend/src/cart.ts",
+      "expected_symbol": "Cart.subtotalCents",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 2
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "frontend/src/cart.ts",
+          "symbol": "Cart",
+          "lines": "10-43"
+        },
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "compute_order_total",
+          "lines": "38-43"
+        },
+        {
+          "file_path": "frontend/src/cart.ts",
+          "symbol": "loadCart",
+          "lines": "50-60"
+        },
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "shipping_cost",
+          "lines": "33-35"
+        },
+        {
+          "file_path": "frontend/src/cart.ts",
+          "symbol": "saveCart",
+          "lines": "45-48"
+        }
+      ],
+      "seconds": 2.54,
+      "answer": "The shopping cart computes its subtotal by iterating over the items in the cart and summing up the product of the price in cents and the quantity for each item. This is done in the `subtotalCents` method of the `Cart` class [1].\n\nHere is the relevant code snippet:\n\n```typescript\n/** Sum of price x quantity in cents, before discounts, tax and shipping. */\nsubtotalCents(): number {\n  let total = 0;\n  for (const line of this.lines.values()) {\n    total += line.product.price_cents * line.quantity;\n  }\n  return total;\n}\n```",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "frontend/src/cart.ts",
+          "start_line": 10,
+          "end_line": 43,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q26",
+      "question": "What happens when the user submits the checkout form?",
+      "expected_file": "frontend/src/components/OrderForm.tsx",
+      "expected_symbol": "OrderForm",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "frontend/src/components/OrderForm.tsx",
+          "symbol": "OrderForm",
+          "lines": "9-64"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "placeOrder",
+          "lines": "45-51"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.mark_paid",
+          "lines": "64-75"
+        },
+        {
+          "file_path": "README.md",
+          "symbol": "Project layout",
+          "lines": "14-21"
+        },
+        {
+          "file_path": "frontend/src/components/OrderForm.tsx",
+          "symbol": "OrderForm.tsx",
+          "lines": "1-3"
+        }
+      ],
+      "seconds": 2.95,
+      "answer": "When the user submits the checkout form, the `handleSubmit` function in `OrderForm.tsx` [1] is triggered. This function first checks if the cart is empty and sets a message if it is. If the cart is not empty, it calls the `placeOrder` function from `api.ts` [2] with the user's email, cart items, and discount code. If the order is placed successfully, it updates the message to show the order number and total charged. If there is an error during the order placement, it catches the error and sets a message accordingly.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "frontend/src/components/OrderForm.tsx",
+          "start_line": 9,
+          "end_line": 64,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 2,
+          "file_path": "frontend/src/api.ts",
+          "start_line": 45,
+          "end_line": 51,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "frontend/src/components/OrderForm.tsx",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        },
+        {
+          "kind": "mention",
+          "file_path": "frontend/src/api.ts",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q27",
+      "question": "Where is the SHOPLITE_LOW_STOCK setting read?",
+      "expected_file": "backend/config.py",
+      "expected_symbol": "load_config",
+      "symbol_found_in_index": true,
+      "rank": 3,
+      "file_rank": 3,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "file_reciprocal_rank": 0.3333333333333333,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 5
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 3
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/inventory.py",
+          "symbol": "check_low_stock",
+          "lines": "32-37"
+        },
+        {
+          "file_path": "README.md",
+          "symbol": "Running locally",
+          "lines": "23-32"
+        },
+        {
+          "file_path": "backend/config.py",
+          "symbol": "load_config",
+          "lines": "17-27"
+        },
+        {
+          "file_path": "backend/services/inventory.py",
+          "symbol": "reserve_stock",
+          "lines": "19-24"
+        },
+        {
+          "file_path": "backend/services/inventory.py",
+          "symbol": "release_stock",
+          "lines": "27-29"
+        }
+      ],
+      "seconds": 0.68,
+      "answer": "The SHOPLITE_LOW_STOCK setting is read in the `load_config` function in `backend/config.py` [3].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 3,
+          "file_path": "backend/config.py",
+          "start_line": 17,
+          "end_line": 27,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/config.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q28",
+      "question": "Which code returns the 'authentication required' error?",
+      "expected_file": "backend/auth.py",
+      "expected_symbol": "require_auth",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/auth.py",
+          "symbol": "require_auth",
+          "lines": "42-55"
+        },
+        {
+          "file_path": "requirements.txt",
+          "symbol": "requirements.txt",
+          "lines": "1-2"
+        },
+        {
+          "file_path": "backend/services/inventory.py",
+          "symbol": "OutOfStockError",
+          "lines": "8-11"
+        },
+        {
+          "file_path": "backend/routes.py",
+          "symbol": "register_staff_routes",
+          "lines": "55-67"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "ApiError",
+          "lines": "20-24"
+        }
+      ],
+      "seconds": 1.52,
+      "answer": "The code that returns the 'authentication required' error is in the `require_auth` decorator in `backend/auth.py` [1]. Specifically, when the `verify_token` function returns `None`, indicating an invalid or expired token, the decorator returns a JSON response with the error message \"authentication required\" and a status code of 401.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/auth.py",
+          "start_line": 42,
+          "end_line": 55,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/auth.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q29",
+      "question": "Where are rows inserted into the order_items table?",
+      "expected_file": "backend/services/orders.py",
+      "expected_symbol": "OrderService.create_order",
+      "symbol_found_in_index": true,
+      "rank": 2,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 5
+        },
+        "bm25": {
+          "rank": 3
+        },
+        "hybrid": {
+          "rank": 2
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.get_order",
+          "lines": "50-62"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "OrderService.create_order",
+          "lines": "27-48"
+        },
+        {
+          "file_path": "backend/services/orders.py",
+          "symbol": "orders.py",
+          "lines": "1-9"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "placeOrder",
+          "lines": "45-51"
+        },
+        {
+          "file_path": "backend/models.py",
+          "symbol": "OrderItem",
+          "lines": "25-33"
+        }
+      ],
+      "seconds": 2.18,
+      "answer": "The rows are inserted into the order_items table in the `create_order` method of the `OrderService` class, specifically in the following code snippet:\n\n```python\nself.conn.executemany(\n    \"INSERT INTO order_items (order_id, product_id, quantity, unit_price_cents) VALUES (?, ?, ?, ?)\",\n    [(order.id, i.product_id, i.quantity, i.unit_price_cents) for i in items],\n)\n```\n\nThis code is found in excerpt [2].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 2,
+          "file_path": "backend/services/orders.py",
+          "start_line": 27,
+          "end_line": 48,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "q30",
+      "question": "Where does the 'Unknown discount code' error come from?",
+      "expected_file": "backend/services/pricing.py",
+      "expected_symbol": "apply_discount",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "apply_discount",
+          "lines": "18-25"
+        },
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "InvalidDiscountCode",
+          "lines": "14-15"
+        },
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "pricing.py",
+          "lines": "1-11"
+        },
+        {
+          "file_path": "backend/services/pricing.py",
+          "symbol": "compute_order_total",
+          "lines": "38-43"
+        },
+        {
+          "file_path": "frontend/src/api.ts",
+          "symbol": "placeOrder",
+          "lines": "45-51"
+        }
+      ],
+      "seconds": 1.68,
+      "answer": "The 'Unknown discount code' error comes from the `apply_discount` function in `backend/services/pricing.py` [1]. This function checks if the provided discount code is valid by looking it up in the `DISCOUNT_CODES` dictionary. If the code is not found, it raises an `InvalidDiscountCode` exception with the message \"Unknown discount code: {code}\".",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/services/pricing.py",
+          "start_line": 18,
+          "end_line": 25,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/services/pricing.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    }
+  ],
+  "unanswerable": [
+    {
+      "id": "n01",
+      "question": "How does the app charge credit cards through Stripe?",
+      "answer": "I could not find this in the indexed code. The provided excerpts do not include any information about how the app charges credit cards through Stripe.",
+      "abstained": true,
+      "seconds": 1.28
+    },
+    {
+      "id": "n02",
+      "question": "Which GraphQL resolvers expose the product catalogue?",
+      "answer": "I could not find this in the indexed code. The provided excerpts do not mention GraphQL resolvers or the product catalogue.",
+      "abstained": true,
+      "seconds": 0.69
+    },
+    {
+      "id": "n03",
+      "question": "How are product images resized and uploaded to S3?",
+      "answer": "I could not find this in the indexed code. The provided excerpts do not include any information about product images being resized or uploaded to S3.",
+      "abstained": true,
+      "seconds": 0.81
+    }
+  ],
+  "duration_seconds": 64.9
+}

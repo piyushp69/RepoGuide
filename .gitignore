@@ -1,0 +1,19 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+
+# Local configuration and runtime data (SQLite, ChromaDB, cloned repositories, exports)
+.env
+data/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

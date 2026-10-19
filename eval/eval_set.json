@@ -1,0 +1,42 @@
+{
+  "name": "shoplite-sample",
+  "description": "Questions about the ShopLite sample repository (eval/sample_repo). Each question names the file and symbol that answers it. Unanswerable questions check that the model says it cannot find the answer instead of guessing.",
+  "repo": "sample_repo",
+  "questions": [
+    {"id": "q01", "question": "How is the final order total calculated?", "expected_file": "backend/services/pricing.py", "expected_symbol": "compute_order_total"},
+    {"id": "q02", "question": "What discount codes exist and how is a discount applied to an amount?", "expected_file": "backend/services/pricing.py", "expected_symbol": "apply_discount"},
+    {"id": "q03", "question": "How is sales tax rounded?", "expected_file": "backend/services/pricing.py", "expected_symbol": "calculate_tax"},
+    {"id": "q04", "question": "When do customers get free shipping?", "expected_file": "backend/services/pricing.py", "expected_symbol": "shipping_cost"},
+    {"id": "q05", "question": "How are user passwords hashed before they are stored?", "expected_file": "backend/auth.py", "expected_symbol": "hash_password"},
+    {"id": "q06", "question": "How does the API check that a token is valid and not expired?", "expected_file": "backend/auth.py", "expected_symbol": "verify_token"},
+    {"id": "q07", "question": "What protects staff-only endpoints from unauthenticated requests?", "expected_file": "backend/auth.py", "expected_symbol": "require_auth"},
+    {"id": "q08", "question": "Where are the database tables created?", "expected_file": "backend/db.py", "expected_symbol": "init_db"},
+    {"id": "q09", "question": "How are database transactions committed or rolled back?", "expected_file": "backend/db.py", "expected_symbol": "transaction"},
+    {"id": "q10", "question": "What happens when an order asks for more units than are in stock?", "expected_file": "backend/services/inventory.py", "expected_symbol": "reserve_stock"},
+    {"id": "q11", "question": "How does the system warn about products that are running low?", "expected_file": "backend/services/inventory.py", "expected_symbol": "check_low_stock"},
+    {"id": "q12", "question": "What does cancelling an order do to inventory?", "expected_file": "backend/services/orders.py", "expected_symbol": "OrderService.cancel_order"},
+    {"id": "q13", "question": "Walk me through the steps of placing a new order on the server.", "expected_file": "backend/services/orders.py", "expected_symbol": "OrderService.create_order"},
+    {"id": "q14", "question": "Which order states allow an order to be cancelled?", "expected_file": "backend/models.py", "expected_symbol": "Order.can_cancel"},
+    {"id": "q15", "question": "How is an order marked as shipped?", "expected_file": "backend/services/orders.py", "expected_symbol": "OrderService.mark_shipped"},
+    {"id": "q16", "question": "How is a payment reference recorded on an order?", "expected_file": "backend/services/orders.py", "expected_symbol": "OrderService.mark_paid"},
+    {"id": "q17", "question": "What does the order confirmation e-mail contain?", "expected_file": "backend/services/notifications.py", "expected_symbol": "send_order_confirmation"},
+    {"id": "q18", "question": "What happens if the mail server is unreachable when an e-mail is sent?", "expected_file": "backend/services/notifications.py", "expected_symbol": "_send_email"},
+    {"id": "q19", "question": "Which environment variables configure the application?", "expected_file": "backend/config.py", "expected_symbol": "load_config"},
+    {"id": "q20", "question": "How is the web application assembled at startup?", "expected_file": "backend/app.py", "expected_symbol": "create_app"},
+    {"id": "q21", "question": "Which endpoint places an order and how does it validate the request body?", "expected_file": "backend/routes.py", "expected_symbol": "create_order_route"},
+    {"id": "q22", "question": "How does the API list products?", "expected_file": "backend/routes.py", "expected_symbol": "list_products"},
+    {"id": "q23", "question": "How does the frontend send an order to the backend?", "expected_file": "frontend/src/api.ts", "expected_symbol": "placeOrder"},
+    {"id": "q24", "question": "How are API error responses turned into errors in the frontend code?", "expected_file": "frontend/src/api.ts", "expected_symbol": "request"},
+    {"id": "q25", "question": "How does the shopping cart compute its subtotal?", "expected_file": "frontend/src/cart.ts", "expected_symbol": "Cart.subtotalCents"},
+    {"id": "q26", "question": "What happens when the user submits the checkout form?", "expected_file": "frontend/src/components/OrderForm.tsx", "expected_symbol": "OrderForm"},
+    {"id": "q27", "question": "Where is the SHOPLITE_LOW_STOCK setting read?", "expected_file": "backend/config.py", "expected_symbol": "load_config"},
+    {"id": "q28", "question": "Which code returns the 'authentication required' error?", "expected_file": "backend/auth.py", "expected_symbol": "require_auth"},
+    {"id": "q29", "question": "Where are rows inserted into the order_items table?", "expected_file": "backend/services/orders.py", "expected_symbol": "OrderService.create_order"},
+    {"id": "q30", "question": "Where does the 'Unknown discount code' error come from?", "expected_file": "backend/services/pricing.py", "expected_symbol": "apply_discount"}
+  ],
+  "unanswerable": [
+    {"id": "n01", "question": "How does the app charge credit cards through Stripe?"},
+    {"id": "n02", "question": "Which GraphQL resolvers expose the product catalogue?"},
+    {"id": "n03", "question": "How are product images resized and uploaded to S3?"}
+  ]
+}

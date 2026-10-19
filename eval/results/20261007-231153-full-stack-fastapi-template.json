@@ -1,0 +1,1745 @@
+{
+  "run_id": "20261007-231153-full-stack-fastapi-template",
+  "created_at": "2026-10-07T23:11:53+00:00",
+  "eval_set": {
+    "name": "full-stack-fastapi-template",
+    "description": "Audit check on a real repository: github.com/fastapi/full-stack-fastapi-template at commit f27b4721507824e57ebd0286ff1a84d82e83bf59 (FastAPI + SQLModel backend, React + TanStack frontend). Expected files and symbols were read from that commit by hand. The unanswerable questions name technologies the repository does not use. Run with: evaluate.py --project-id <id of the cloned project> --eval-set eval/eval_set_fullstack_template.json",
+    "path": "eval\\eval_set_fullstack_template.json",
+    "questions": 21,
+    "unanswerable": 3
+  },
+  "project": {
+    "id": 8,
+    "name": "fastapi/full-stack-fastapi-template",
+    "root_path": "D:\\CodeParser\\data\\workspace\\github\\fastapi__full-stack-fastapi-template"
+  },
+  "config": {
+    "chat_model": "qwen2.5-coder:7b",
+    "embed_model": "nomic-embed-text",
+    "top_k": 5,
+    "mrr_cutoff": 10,
+    "with_llm": true,
+    "retrieval_top_k": 8
+  },
+  "metrics": {
+    "questions": 21,
+    "hit_at_5": 0.8571,
+    "mrr": 0.6323,
+    "file_hit_at_5": 0.8571,
+    "file_mrr": 0.7077,
+    "in_context_rate": 0.8571,
+    "citation_validity": 1.0,
+    "citations_checked": 41,
+    "answers_with_citations": 1.0,
+    "answers_citing_expected_file": 0.8571,
+    "answers_citing_expected_symbol": 0.8095,
+    "answers_rewritten": 0.0,
+    "answers_with_corrected_citations": 0.0952,
+    "avg_answer_seconds": 2.11,
+    "abstention_rate": 1.0,
+    "unanswerable_questions": 3
+  },
+  "ablation": {
+    "vector": {
+      "hit_at_5": 0.7619,
+      "mrr": 0.4381
+    },
+    "bm25": {
+      "hit_at_5": 0.619,
+      "mrr": 0.477
+    },
+    "hybrid": {
+      "hit_at_5": 0.8571,
+      "mrr": 0.6323
+    }
+  },
+  "questions": [
+    {
+      "id": "r01",
+      "question": "How are user passwords hashed, and which hashing algorithms are supported?",
+      "expected_file": "backend/app/core/security.py",
+      "expected_symbol": "get_password_hash",
+      "symbol_found_in_index": true,
+      "rank": 4,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.25,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 3
+        },
+        "bm25": {
+          "rank": 6
+        },
+        "hybrid": {
+          "rank": 4
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/core/security.py",
+          "symbol": "security.py",
+          "lines": "1-19"
+        },
+        {
+          "file_path": "backend/app/core/security.py",
+          "symbol": "verify_password",
+          "lines": "29-32"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_login.py",
+          "symbol": "test_login_with_argon2_password_keeps_hash",
+          "lines": "165-191"
+        },
+        {
+          "file_path": "backend/app/core/security.py",
+          "symbol": "get_password_hash",
+          "lines": "35-36"
+        },
+        {
+          "file_path": "backend/app/crud.py",
+          "symbol": "authenticate",
+          "lines": "45-60"
+        }
+      ],
+      "seconds": 1.31,
+      "answer": "User passwords are hashed using the `pwdlib` library, which supports multiple hashing algorithms. The supported algorithms are Argon2 and Bcrypt. This is configured in the `password_hash` variable in `security.py` [1].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/app/core/security.py",
+          "start_line": 1,
+          "end_line": 19,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/app/core/security.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": false,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r02",
+      "question": "How is a JWT access token created and when does it expire?",
+      "expected_file": "backend/app/core/security.py",
+      "expected_symbol": "create_access_token",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/core/security.py",
+          "symbol": "create_access_token",
+          "lines": "22-26"
+        },
+        {
+          "file_path": "backend/app/utils.py",
+          "symbol": "generate_password_reset_token",
+          "lines": "105-115"
+        },
+        {
+          "file_path": "backend/app/api/routes/login.py",
+          "symbol": "login_access_token",
+          "lines": "23-42"
+        },
+        {
+          "file_path": "backend/app/api/deps.py",
+          "symbol": "deps.py",
+          "lines": "1-18"
+        },
+        {
+          "file_path": "backend/app/utils.py",
+          "symbol": "verify_password_reset_token",
+          "lines": "118-125"
+        }
+      ],
+      "seconds": 2.52,
+      "answer": "A JWT access token is created in the `create_access_token` function in `backend/app/core/security.py` [1]. This function takes a `subject` (usually a user ID) and an `expires_delta` (time until expiration) as parameters. It encodes these into a JWT using the `jwt.encode` method with the secret key and the specified algorithm.\n\nThe token expires when the `exp` (expiration) claim in the JWT payload reaches its value. This value is set to the current time plus the `expires_delta` provided to the `create_access_token` function.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/app/core/security.py",
+          "start_line": 22,
+          "end_line": 26,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/app/core/security.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r03",
+      "question": "How does the backend decode the bearer token and load the current user for a request?",
+      "expected_file": "backend/app/api/deps.py",
+      "expected_symbol": "get_current_user",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 4
+        },
+        "bm25": {
+          "rank": 2
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/api/deps.py",
+          "symbol": "get_current_user",
+          "lines": "30-46"
+        },
+        {
+          "file_path": "backend/app/api/routes/login.py",
+          "symbol": "test_token",
+          "lines": "45-50"
+        },
+        {
+          "file_path": "frontend/src/client/sdk.gen.ts",
+          "symbol": "UsersService.readUserMe",
+          "lines": "146-158"
+        },
+        {
+          "file_path": "backend/app/models.py",
+          "symbol": "Token",
+          "lines": "113-116"
+        },
+        {
+          "file_path": "backend/tests/utils/utils.py",
+          "symbol": "get_superuser_token_headers",
+          "lines": "17-26"
+        }
+      ],
+      "seconds": 2.96,
+      "answer": "The backend decodes the bearer token and loads the current user for a request using the `get_current_user` function [1]. This function takes a session and a token as dependencies. It decodes the token using the `jwt.decode` method with the secret key and algorithm specified in the settings [1]. If the token is invalid or cannot be decoded, it raises an HTTP 403 Forbidden exception [1]. If the token is valid, it retrieves the user from the database using the user ID from the token payload [1]. If the user is not found or is inactive, it raises an appropriate HTTP exception [1]. If the user is valid, it returns the user object [1].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/app/api/deps.py",
+          "start_line": 30,
+          "end_line": 46,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r04",
+      "question": "What stops a normal user from calling admin-only endpoints?",
+      "expected_file": "backend/app/api/deps.py",
+      "expected_symbol": "get_current_active_superuser",
+      "symbol_found_in_index": true,
+      "rank": null,
+      "file_rank": null,
+      "hit_at_5": false,
+      "file_hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "file_reciprocal_rank": 0.0,
+      "in_context": false,
+      "ablation": {
+        "vector": {
+          "rank": null
+        },
+        "bm25": {
+          "rank": null
+        },
+        "hybrid": {
+          "rank": null
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "symbol": "test_delete_user_without_privileges",
+          "lines": "508-521"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "symbol": "test_get_users_normal_user_me",
+          "lines": "26-34"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "symbol": "test_get_existing_user_permissions_error",
+          "lines": "117-129"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "symbol": "test_get_non_existing_user_permissions_error",
+          "lines": "132-143"
+        },
+        {
+          "file_path": "frontend/src/routes/_layout/admin.tsx",
+          "symbol": "Admin",
+          "lines": "59-74"
+        }
+      ],
+      "seconds": 2.05,
+      "answer": "A normal user cannot call admin-only endpoints because the endpoints have authentication checks that restrict access to non-superusers. Specifically, the `Admin` component in the frontend [5] and the test functions like `test_delete_user_without_privileges` [1], `test_get_existing_user_permissions_error` [3], and `test_get_non_existing_user_permissions_error` [4] all include checks that return a 403 status code if the user does not have enough privileges.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 5,
+          "file_path": "frontend/src/routes/_layout/admin.tsx",
+          "start_line": 59,
+          "end_line": 74,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "start_line": 508,
+          "end_line": 521,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 3,
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "start_line": 117,
+          "end_line": 129,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 4,
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "start_line": 132,
+          "end_line": 143,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": false,
+      "cites_expected_symbol": false,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r05",
+      "question": "How does login avoid leaking, through response time, whether an email address exists?",
+      "expected_file": "backend/app/crud.py",
+      "expected_symbol": "authenticate",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 5
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/crud.py",
+          "symbol": "authenticate",
+          "lines": "45-60"
+        },
+        {
+          "file_path": "backend/app/api/routes/login.py",
+          "symbol": "recover_password",
+          "lines": "53-74"
+        },
+        {
+          "file_path": "backend/app/api/routes/login.py",
+          "symbol": "recover_password_html_content",
+          "lines": "100-123"
+        },
+        {
+          "file_path": "frontend/src/client/sdk.gen.ts",
+          "symbol": "LoginService.recoverPassword",
+          "lines": "54-65"
+        },
+        {
+          "file_path": "frontend/src/client/types.gen.ts",
+          "symbol": "loginRecoverPasswordResponses",
+          "lines": "407-412"
+        }
+      ],
+      "seconds": 1.12,
+      "answer": "The login endpoint avoids leaking whether an email address exists through response time by running the password verification even when the user does not exist [1]. This ensures that the response time is similar whether or not the email exists, preventing timing attacks.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/app/crud.py",
+          "start_line": 45,
+          "end_line": 60,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r06",
+      "question": "How is a new user saved to the database with a hashed password?",
+      "expected_file": "backend/app/crud.py",
+      "expected_symbol": "create_user",
+      "symbol_found_in_index": true,
+      "rank": 4,
+      "file_rank": 3,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.25,
+      "file_reciprocal_rank": 0.3333333333333333,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 3
+        },
+        "bm25": {
+          "rank": 10
+        },
+        "hybrid": {
+          "rank": 4
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/tests/api/routes/test_login.py",
+          "symbol": "test_login_with_argon2_password_keeps_hash",
+          "lines": "165-191"
+        },
+        {
+          "file_path": "backend/app/models.py",
+          "symbol": "User",
+          "lines": "50-55"
+        },
+        {
+          "file_path": "backend/app/crud.py",
+          "symbol": "update_user",
+          "lines": "20-31"
+        },
+        {
+          "file_path": "backend/app/crud.py",
+          "symbol": "create_user",
+          "lines": "10-17"
+        },
+        {
+          "file_path": "backend/tests/crud/test_user.py",
+          "symbol": "test_authenticate_user_with_bcrypt_upgrades_to_argon2",
+          "lines": "96-130"
+        }
+      ],
+      "seconds": 3.4,
+      "answer": "A new user is saved to the database with a hashed password in the `create_user` function in `backend/app/crud.py` [4]. Here is how it works:\n\n1. The function `create_user` is called with a `session` and a `user_create` object.\n2. Inside the function, a `User` object is created using the `UserCreate` data, but with the `hashed_password` field set to the result of `get_password_hash(user_create.password)` [2].\n3. The `User` object is then added to the session, committed, and refreshed to ensure it is saved and updated in the database.\n\nThis ensures that when a new user is created, their password is immediately hashed using the `get_password_hash` function before being stored in the database.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 4,
+          "file_path": "backend/app/crud.py",
+          "start_line": 10,
+          "end_line": 17,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 2,
+          "file_path": "backend/app/models.py",
+          "start_line": 50,
+          "end_line": 55,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/app/crud.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 1
+    },
+    {
+      "id": "r07",
+      "question": "Which endpoint issues an OAuth2 access token after checking the email and password?",
+      "expected_file": "backend/app/api/routes/login.py",
+      "expected_symbol": "login_access_token",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/api/routes/login.py",
+          "symbol": "login_access_token",
+          "lines": "23-42"
+        },
+        {
+          "file_path": "frontend/src/client/sdk.gen.ts",
+          "symbol": "LoginService.loginAccessToken",
+          "lines": "22-38"
+        },
+        {
+          "file_path": "backend/app/api/deps.py",
+          "symbol": "deps.py",
+          "lines": "1-18"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_login.py",
+          "symbol": "test_get_access_token_incorrect_password",
+          "lines": "28-34"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_login.py",
+          "symbol": "test_get_access_token",
+          "lines": "16-25"
+        }
+      ],
+      "seconds": 1.28,
+      "answer": "The endpoint that issues an OAuth2 access token after checking the email and password is `/api/v1/login/access-token` [1].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/app/api/routes/login.py",
+          "start_line": 23,
+          "end_line": 42,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r08",
+      "question": "How does password recovery avoid revealing whether an email is registered?",
+      "expected_file": "backend/app/api/routes/login.py",
+      "expected_symbol": "recover_password",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 3
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/api/routes/login.py",
+          "symbol": "recover_password",
+          "lines": "53-74"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_login.py",
+          "symbol": "test_recovery_password_user_not_exits",
+          "lines": "67-79"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_login.py",
+          "symbol": "test_recovery_password",
+          "lines": "49-64"
+        },
+        {
+          "file_path": "backend/app/api/routes/login.py",
+          "symbol": "recover_password_html_content",
+          "lines": "100-123"
+        },
+        {
+          "file_path": "frontend/src/client/sdk.gen.ts",
+          "symbol": "LoginService.recoverPassword",
+          "lines": "54-65"
+        }
+      ],
+      "seconds": 3.34,
+      "answer": "The password recovery endpoint in the backend ensures that it always returns the same response regardless of whether the email is registered or not. This is done in the `recover_password` function in `backend/app/api/routes/login.py` [1]. Specifically, the function checks if a user exists with the provided email:\n\n```python\nuser = crud.get_user_by_email(session=session, email=email)\n```\n\nIf the user exists, it proceeds to generate a password reset token and sends an email. If the user does not exist, it still returns a generic message:\n\n```python\nreturn Message(\n    message=\"If that email is registered, we sent a password recovery link\"\n)\n```\n\nThis approach prevents email enumeration attacks by ensuring that the response time and the response content are consistent whether or not the email is registered.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/app/api/routes/login.py",
+          "start_line": 53,
+          "end_line": 74,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/app/api/routes/login.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r09",
+      "question": "How is a password reset token checked before the new password is saved?",
+      "expected_file": "backend/app/api/routes/login.py",
+      "expected_symbol": "reset_password",
+      "symbol_found_in_index": true,
+      "rank": 3,
+      "file_rank": 3,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "file_reciprocal_rank": 0.3333333333333333,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 4
+        },
+        "bm25": {
+          "rank": 2
+        },
+        "hybrid": {
+          "rank": 3
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/utils.py",
+          "symbol": "verify_password_reset_token",
+          "lines": "118-125"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_login.py",
+          "symbol": "test_reset_password_invalid_token",
+          "lines": "113-126"
+        },
+        {
+          "file_path": "backend/app/api/routes/login.py",
+          "symbol": "reset_password",
+          "lines": "77-97"
+        },
+        {
+          "file_path": "backend/app/utils.py",
+          "symbol": "generate_password_reset_token",
+          "lines": "105-115"
+        },
+        {
+          "file_path": "frontend/tests/reset-password.spec.ts",
+          "symbol": "reset-password.spec.ts",
+          "lines": "101-114"
+        }
+      ],
+      "seconds": 2.6,
+      "answer": "The password reset token is checked in the `reset_password` function in `backend/app/api/routes/login.py` [3]. Here is the relevant code snippet:\n\n```python\nemail = verify_password_reset_token(token=body.token)\nif not email:\n    raise HTTPException(status_code=400, detail=\"Invalid token\")\n```\n\nThis code calls the `verify_password_reset_token` function [1] to decode the token and extract the email. If the token is invalid, it raises an `HTTPException` with a status code of 400 and a detail of \"Invalid token\".",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 3,
+          "file_path": "backend/app/api/routes/login.py",
+          "start_line": 77,
+          "end_line": 97,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/app/utils.py",
+          "start_line": 118,
+          "end_line": 125,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/app/api/routes/login.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r10",
+      "question": "How is the password reset token generated and how long is it valid?",
+      "expected_file": "backend/app/utils.py",
+      "expected_symbol": "generate_password_reset_token",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 2
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/utils.py",
+          "symbol": "generate_password_reset_token",
+          "lines": "105-115"
+        },
+        {
+          "file_path": "backend/app/utils.py",
+          "symbol": "generate_reset_password_email",
+          "lines": "70-84"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_login.py",
+          "symbol": "test_reset_password_invalid_token",
+          "lines": "113-126"
+        },
+        {
+          "file_path": "backend/app/utils.py",
+          "symbol": "verify_password_reset_token",
+          "lines": "118-125"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_login.py",
+          "symbol": "test_reset_password",
+          "lines": "82-110"
+        }
+      ],
+      "seconds": 0.98,
+      "answer": "The password reset token is generated in the `generate_password_reset_token` function [1]. It is valid for a duration specified by `settings.EMAIL_RESET_TOKEN_EXPIRE_HOURS` [1].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/app/utils.py",
+          "start_line": 105,
+          "end_line": 115,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r11",
+      "question": "How are emails sent and which SMTP options are used?",
+      "expected_file": "backend/app/utils.py",
+      "expected_symbol": "send_email",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 2
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/utils.py",
+          "symbol": "send_email",
+          "lines": "34-57"
+        },
+        {
+          "file_path": "deployment-docker-compose.md",
+          "symbol": "Configure the Application",
+          "lines": "19-36"
+        },
+        {
+          "file_path": "backend/app/core/config.py",
+          "symbol": "Settings.emails_enabled",
+          "lines": "59-66"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "symbol": "test_create_user_new_email",
+          "lines": "37-57"
+        },
+        {
+          "file_path": "deployment.md",
+          "symbol": "Configure the Application",
+          "lines": "11-27"
+        }
+      ],
+      "seconds": 3.07,
+      "answer": "Emails are sent using the `send_email` function [1]. This function constructs an email message using the `emails.message.Message` class and sends it using SMTP options configured in the application settings. The SMTP options used are determined by the following settings:\n\n- `SMTP_HOST`: The SMTP server host.\n- `SMTP_PORT`: The SMTP server port.\n- `SMTP_TLS`: A boolean indicating whether to use TLS for the SMTP connection.\n- `SMTP_SSL`: A boolean indicating whether to use SSL for the SMTP connection.\n- `SMTP_USER`: The SMTP server user.\n- `SMTP_PASSWORD`: The SMTP server password.\n\nThese options are set in the `send_email` function based on the values provided in the application settings [1].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/app/utils.py",
+          "start_line": 34,
+          "end_line": 57,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 1
+    },
+    {
+      "id": "r12",
+      "question": "How can someone sign up without being logged in, and what happens if the email is already taken?",
+      "expected_file": "backend/app/api/routes/users.py",
+      "expected_symbol": "register_user",
+      "symbol_found_in_index": true,
+      "rank": 2,
+      "file_rank": 2,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "file_reciprocal_rank": 0.5,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 4
+        },
+        "bm25": {
+          "rank": 2
+        },
+        "hybrid": {
+          "rank": 2
+        }
+      },
+      "top5": [
+        {
+          "file_path": "frontend/src/routes/signup.tsx",
+          "symbol": "SignUp",
+          "lines": "174-187"
+        },
+        {
+          "file_path": "backend/app/api/routes/users.py",
+          "symbol": "register_user",
+          "lines": "146-159"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "symbol": "test_register_user_already_exists_error",
+          "lines": "342-355"
+        },
+        {
+          "file_path": "frontend/tests/utils/user.ts",
+          "symbol": "signUpNewUser",
+          "lines": "3-17"
+        },
+        {
+          "file_path": "frontend/tests/sign-up.spec.ts",
+          "symbol": "sign-up.spec.ts",
+          "lines": "126-160"
+        }
+      ],
+      "seconds": 1.55,
+      "answer": "To sign up without being logged in, a user can navigate to the `/signup` route and fill out the sign-up form [1]. If the email provided is already taken, the backend will return a 400 status code with the detail \"The user with this email already exists in the system\" [2][3].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "frontend/src/routes/signup.tsx",
+          "start_line": 174,
+          "end_line": 187,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 2,
+          "file_path": "backend/app/api/routes/users.py",
+          "start_line": 146,
+          "end_line": 159,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 3,
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "start_line": 342,
+          "end_line": 355,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r13",
+      "question": "Can a superuser delete their own account?",
+      "expected_file": "backend/app/api/routes/users.py",
+      "expected_symbol": "delete_user_me",
+      "symbol_found_in_index": true,
+      "rank": 4,
+      "file_rank": 4,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.25,
+      "file_reciprocal_rank": 0.25,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 3
+        },
+        "bm25": {
+          "rank": null
+        },
+        "hybrid": {
+          "rank": 4
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "symbol": "test_delete_user_me_as_superuser",
+          "lines": "451-460"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "symbol": "test_delete_user_current_super_user_error",
+          "lines": "493-505"
+        },
+        {
+          "file_path": "frontend/src/components/UserSettings/DeleteAccount.tsx",
+          "symbol": "DeleteAccount",
+          "lines": "3-13"
+        },
+        {
+          "file_path": "backend/app/api/routes/users.py",
+          "symbol": "delete_user_me",
+          "lines": "132-143"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "symbol": "test_delete_user_super_user",
+          "lines": "463-479"
+        }
+      ],
+      "seconds": 1.6,
+      "answer": "No, a superuser cannot delete their own account. This is enforced by the backend code in the `delete_user_me` function [4] and the `delete_user` function [7]. Both functions check if the current user is a superuser and raise an HTTPException with the detail \"Super users are not allowed to delete themselves\" if they are.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 4,
+          "file_path": "backend/app/api/routes/users.py",
+          "start_line": 132,
+          "end_line": 143,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 7,
+          "file_path": "backend/app/api/routes/users.py",
+          "start_line": 214,
+          "end_line": 232,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r14",
+      "question": "What checks are made when users change their own password?",
+      "expected_file": "backend/app/api/routes/users.py",
+      "expected_symbol": "update_password_me",
+      "symbol_found_in_index": true,
+      "rank": 9,
+      "file_rank": 9,
+      "hit_at_5": false,
+      "file_hit_at_5": false,
+      "reciprocal_rank": 0.1111111111111111,
+      "file_reciprocal_rank": 0.1111111111111111,
+      "in_context": false,
+      "ablation": {
+        "vector": {
+          "rank": 6
+        },
+        "bm25": {
+          "rank": null
+        },
+        "hybrid": {
+          "rank": 9
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/core/config.py",
+          "symbol": "Settings._check_default_secret",
+          "lines": "68-77"
+        },
+        {
+          "file_path": "frontend/src/components/UserSettings/ChangePassword.tsx",
+          "symbol": "formSchema",
+          "lines": "20-37"
+        },
+        {
+          "file_path": "frontend/tests/user-settings.spec.ts",
+          "symbol": "user-settings.spec.ts",
+          "lines": "147-204"
+        },
+        {
+          "file_path": "frontend/src/components/UserSettings/ChangePassword.tsx",
+          "symbol": "ChangePassword",
+          "lines": "41-144"
+        },
+        {
+          "file_path": "frontend/tests/user-settings.spec.ts",
+          "symbol": "user-settings.spec.ts",
+          "lines": "99-156"
+        }
+      ],
+      "seconds": 4.64,
+      "answer": "When users change their own password, the following checks are made:\n\n1. The new password must be at least 8 characters long. This is enforced by the `formSchema` in the `ChangePassword` component [2]. Specifically, the `new_password` field has a minimum length of 8 characters.\n\n2. The new password and the confirmation password must match. This is also checked in the `formSchema` in the `ChangePassword` component [2]. The `refine` method ensures that the `new_password` and `confirm_password` fields are equal.\n\n3. The current password must be correct. This check is performed by the `updatePasswordMe` function in the `UsersService` [4]. The function verifies the current password against the stored password.\n\n4. The new password cannot be the same as the current password. This is also checked in the `updatePasswordMe` function in the `UsersService` [4]. If the new password is the same as the current password, an error is returned with the message \"New password cannot be the same as the current one\".",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 2,
+          "file_path": "frontend/src/components/UserSettings/ChangePassword.tsx",
+          "start_line": 20,
+          "end_line": 37,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 4,
+          "file_path": "frontend/src/components/UserSettings/ChangePassword.tsx",
+          "start_line": 41,
+          "end_line": 144,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": false,
+      "cites_expected_symbol": false,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r15",
+      "question": "Which items does a user who is not an admin see when listing items?",
+      "expected_file": "backend/app/api/routes/items.py",
+      "expected_symbol": "read_items",
+      "symbol_found_in_index": true,
+      "rank": 4,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.25,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": null
+        },
+        "bm25": {
+          "rank": null
+        },
+        "hybrid": {
+          "rank": 4
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/api/routes/items.py",
+          "symbol": "read_item",
+          "lines": "48-58"
+        },
+        {
+          "file_path": "backend/app/models.py",
+          "symbol": "ItemsPublic",
+          "lines": "103-105"
+        },
+        {
+          "file_path": "backend/app/api/routes/items.py",
+          "symbol": "update_item",
+          "lines": "75-96"
+        },
+        {
+          "file_path": "backend/app/api/routes/items.py",
+          "symbol": "read_items",
+          "lines": "13-45"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_items.py",
+          "symbol": "test_read_item_not_found",
+          "lines": "43-52"
+        }
+      ],
+      "seconds": 3.44,
+      "answer": "When a user who is not an admin lists items, they see only the items that belong to them. This is determined by the following code excerpt:\n\n```python\nif not current_user.is_superuser:\n    count_statement = (\n        select(func.count())\n        .select_from(Item)\n        .where(Item.owner_id == current_user.id)\n    )\n    count = session.exec(count_statement).one()\n    statement = (\n        select(Item)\n        .where(Item.owner_id == current_user.id)\n        .order_by(col(Item.created_at).desc())\n        .offset(skip)\n        .limit(limit)\n    )\n    items = session.exec(statement).all()\n```\n\nThis code snippet is from [4] and shows that if the user is not a superuser, the query filters items by `owner_id` matching the current user's ID.",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 4,
+          "file_path": "backend/app/api/routes/items.py",
+          "start_line": 13,
+          "end_line": 45,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r16",
+      "question": "How is the first superuser account created when the database is initialised?",
+      "expected_file": "backend/app/core/db.py",
+      "expected_symbol": "init_db",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 2
+        },
+        "bm25": {
+          "rank": 4
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/core/db.py",
+          "symbol": "init_db",
+          "lines": "15-33"
+        },
+        {
+          "file_path": "deployment.md",
+          "symbol": "Secrets",
+          "lines": "29-43"
+        },
+        {
+          "file_path": "deployment-docker-compose.md",
+          "symbol": "Secrets",
+          "lines": "38-48"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "symbol": "test_get_users_superuser_me",
+          "lines": "15-23"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_users.py",
+          "symbol": "test_update_password_me",
+          "lines": "224-264"
+        }
+      ],
+      "seconds": 2.02,
+      "answer": "The first superuser account is created in the `init_db` function [1]. This function checks if a user with the email specified in `settings.FIRST_SUPERUSER` exists. If not, it creates a new user using the `UserCreate` schema [11] and the `crud.create_user` function [10]. The user is created with the password from `settings.FIRST_SUPERUSER_PASSWORD` and is marked as a superuser [1].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/app/core/db.py",
+          "start_line": 15,
+          "end_line": 33,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 11,
+          "file_path": "backend/app/models.py",
+          "start_line": 20,
+          "end_line": 22,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 10,
+          "file_path": "backend/app/crud.py",
+          "start_line": 10,
+          "end_line": 17,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r17",
+      "question": "What happens if a secret is left set to 'changethis' in the configuration?",
+      "expected_file": "backend/app/core/config.py",
+      "expected_symbol": "_check_default_secret",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 1
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/core/config.py",
+          "symbol": "Settings._check_default_secret",
+          "lines": "68-77"
+        },
+        {
+          "file_path": "deployment-docker-compose.md",
+          "symbol": "Secrets",
+          "lines": "38-48"
+        },
+        {
+          "file_path": "deployment-docker-compose.md",
+          "symbol": "Configure Repository Variables and Secrets",
+          "lines": "69-91"
+        },
+        {
+          "file_path": "deployment.md",
+          "symbol": "Secrets",
+          "lines": "29-43"
+        },
+        {
+          "file_path": "backend/app/core/config.py",
+          "symbol": "Settings._enforce_non_default_secrets",
+          "lines": "79-88"
+        }
+      ],
+      "seconds": 1.3,
+      "answer": "If a secret is left set to 'changethis' in the configuration, a warning is raised in the development environment and a `ValueError` is raised in the production environment. This is handled by the `_check_default_secret` method in `backend/app/core/config.py` [1].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/app/core/config.py",
+          "start_line": 68,
+          "end_line": 77,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/app/core/config.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r18",
+      "question": "How long are access tokens valid by default, and where is that configured?",
+      "expected_file": "backend/app/core/config.py",
+      "expected_symbol": "Settings",
+      "symbol_found_in_index": true,
+      "rank": null,
+      "file_rank": null,
+      "hit_at_5": false,
+      "file_hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "file_reciprocal_rank": 0.0,
+      "in_context": false,
+      "ablation": {
+        "vector": {
+          "rank": 8
+        },
+        "bm25": {
+          "rank": null
+        },
+        "hybrid": {
+          "rank": null
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/api/routes/login.py",
+          "symbol": "login_access_token",
+          "lines": "23-42"
+        },
+        {
+          "file_path": "frontend/src/client/sdk.gen.ts",
+          "symbol": "LoginService.loginAccessToken",
+          "lines": "22-38"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_login.py",
+          "symbol": "test_get_access_token",
+          "lines": "16-25"
+        },
+        {
+          "file_path": "backend/app/core/security.py",
+          "symbol": "create_access_token",
+          "lines": "22-26"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_login.py",
+          "symbol": "test_use_access_token",
+          "lines": "37-46"
+        }
+      ],
+      "seconds": 1.19,
+      "answer": "Access tokens are valid for a default duration of 30 minutes, as configured in the `settings.ACCESS_TOKEN_EXPIRE_MINUTES` variable [1].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/app/api/routes/login.py",
+          "start_line": 23,
+          "end_line": 42,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": false,
+      "cites_expected_symbol": false,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r19",
+      "question": "Where does the frontend store the access token after login, and what does logout do?",
+      "expected_file": "frontend/src/hooks/useAuth.ts",
+      "expected_symbol": "useAuth",
+      "symbol_found_in_index": true,
+      "rank": 3,
+      "file_rank": 3,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "file_reciprocal_rank": 0.3333333333333333,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 8
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 3
+        }
+      },
+      "top5": [
+        {
+          "file_path": "frontend/src/client/sdk.gen.ts",
+          "symbol": "LoginService.loginAccessToken",
+          "lines": "22-38"
+        },
+        {
+          "file_path": "frontend/src/client/types.gen.ts",
+          "symbol": "loginLoginAccessTokenData",
+          "lines": "345-350"
+        },
+        {
+          "file_path": "frontend/src/hooks/useAuth.ts",
+          "symbol": "useAuth",
+          "lines": "18-67"
+        },
+        {
+          "file_path": "backend/app/api/routes/login.py",
+          "symbol": "login_access_token",
+          "lines": "23-42"
+        },
+        {
+          "file_path": "backend/tests/api/routes/test_login.py",
+          "symbol": "test_get_access_token",
+          "lines": "16-25"
+        }
+      ],
+      "seconds": 1.31,
+      "answer": "The frontend stores the access token after login in `localStorage` [9]. Specifically, it sets the token in `localStorage` with the key `\"access_token\"` [3][9].\n\nLogout removes the access token from `localStorage` and navigates to the login page [3][9].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 9,
+          "file_path": "frontend/src/hooks/useAuth.ts",
+          "start_line": 14,
+          "end_line": 16,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "marker",
+          "n": 3,
+          "file_path": "frontend/src/hooks/useAuth.ts",
+          "start_line": 18,
+          "end_line": 67,
+          "valid": true,
+          "reason": "ok"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r20",
+      "question": "How does the frontend decide whether the user is logged in?",
+      "expected_file": "frontend/src/hooks/useAuth.ts",
+      "expected_symbol": "isLoggedIn",
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 3
+        },
+        "bm25": {
+          "rank": 6
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "frontend/src/hooks/useAuth.ts",
+          "symbol": "isLoggedIn",
+          "lines": "14-16"
+        },
+        {
+          "file_path": "frontend/src/client/sdk.gen.ts",
+          "symbol": "UsersService.registerUser",
+          "lines": "196-211"
+        },
+        {
+          "file_path": "frontend/tests/login.spec.ts",
+          "symbol": "login.spec.ts",
+          "lines": "68-117"
+        },
+        {
+          "file_path": "frontend/tests/login.spec.ts",
+          "symbol": "login.spec.ts",
+          "lines": "19-77"
+        },
+        {
+          "file_path": "frontend/tests/utils/user.ts",
+          "symbol": "logInUser",
+          "lines": "19-29"
+        }
+      ],
+      "seconds": 1.09,
+      "answer": "The frontend decides whether the user is logged in by checking if there is an `access_token` stored in `localStorage`. This is done in the `isLoggedIn` function in `frontend/src/hooks/useAuth.ts` [1].",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "frontend/src/hooks/useAuth.ts",
+          "start_line": 14,
+          "end_line": 16,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "frontend/src/hooks/useAuth.ts",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    },
+    {
+      "id": "r21",
+      "question": "Where is Sentry error tracking set up, and when is it turned on?",
+      "expected_file": "backend/app/main.py",
+      "expected_symbol": null,
+      "symbol_found_in_index": true,
+      "rank": 1,
+      "file_rank": 1,
+      "hit_at_5": true,
+      "file_hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "file_reciprocal_rank": 1.0,
+      "in_context": true,
+      "ablation": {
+        "vector": {
+          "rank": 2
+        },
+        "bm25": {
+          "rank": 1
+        },
+        "hybrid": {
+          "rank": 1
+        }
+      },
+      "top5": [
+        {
+          "file_path": "backend/app/main.py",
+          "symbol": "main.py",
+          "lines": "18-36"
+        },
+        {
+          "file_path": "backend/app/core/config.py",
+          "symbol": "Settings",
+          "lines": "15-31"
+        },
+        {
+          "file_path": "deployment-docker-compose.md",
+          "symbol": "Configure Repository Variables and Secrets",
+          "lines": "69-91"
+        },
+        {
+          "file_path": "compose.yml",
+          "symbol": "compose.yml",
+          "lines": "39-88"
+        },
+        {
+          "file_path": "backend/app/main.py",
+          "symbol": "main.py",
+          "lines": "1-11"
+        }
+      ],
+      "seconds": 1.54,
+      "answer": "Sentry error tracking is set up in the `main.py` file, specifically in the `if` statement that checks for `settings.SENTRY_DSN` and `settings.FASTAPI_ENV != \"development\"`. When both conditions are met, Sentry is initialized with the DSN and tracing enabled.\n\n**Excerpt:** [1]",
+      "not_found": false,
+      "rewritten": false,
+      "citations": [
+        {
+          "kind": "marker",
+          "n": 1,
+          "file_path": "backend/app/main.py",
+          "start_line": 18,
+          "end_line": 36,
+          "valid": true,
+          "reason": "ok"
+        },
+        {
+          "kind": "mention",
+          "file_path": "backend/app/api/main.py",
+          "start_line": null,
+          "end_line": null,
+          "valid": true,
+          "reason": "ok (file only) (name shared by 2 files)"
+        }
+      ],
+      "has_citation": true,
+      "cites_expected_file": true,
+      "cites_expected_symbol": true,
+      "citation_corrections": 0
+    }
+  ],
+  "unanswerable": [
+    {
+      "id": "u01",
+      "question": "How does the app charge customers through Stripe?",
+      "answer": "I could not find this in the indexed code. The provided excerpts do not contain any information about how the app charges customers through Stripe.",
+      "abstained": true,
+      "seconds": 0.78
+    },
+    {
+      "id": "u02",
+      "question": "Which Kafka topics does the backend publish events to?",
+      "answer": "I could not find this in the indexed code. The provided excerpts do not mention any Kafka topics or event publishing.",
+      "abstained": true,
+      "seconds": 0.69
+    },
+    {
+      "id": "u03",
+      "question": "How are WebSocket connections authenticated for real-time chat?",
+      "answer": "I could not find this in the indexed code. The provided excerpts do not contain any information about WebSocket connections or real-time chat authentication.",
+      "abstained": true,
+      "seconds": 0.75
+    }
+  ],
+  "duration_seconds": 48.3
+}
